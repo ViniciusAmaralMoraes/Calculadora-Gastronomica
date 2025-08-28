@@ -1,4 +1,5 @@
-
+#o programa recebe quantos itens tem uma receita e de acordo com a ncessidade do usuario
+#recalcula a quantidade de cada ingrediente da receita
 
 
 n = int(input("Quantos Ingredientes serao digitados? "))
@@ -14,22 +15,26 @@ for i in range (n):
     quantidade_receita[i] = float(input("Digite a Quantidade: "))
     unidade[i]= str(input("Digite a Unidade do ingrediente: "))
 
-print("Oque voce deseja Fazer?")
-print("1 - Escalonar a receita "
-      "\n2- Multiplicar a receita a receita "
-      "\n3- divir a receita ")
-opcao = int(input(""))
+
 
 while True:
+    print("Oque voce deseja Fazer?")
+    print("1 - Escalonar a receita "
+          "\n2 - Multiplicar a receita a receita "
+          "\n3 - divir a receita "
+          "\n4 - Desistir da Receita (sair do Programa)")
+    opcao = int(input(""))
+
     if opcao == 1:
         print("Agora Digite as Quatidades que voce tem de cada Item ")
 
         for i in range (n):
             quantidade_usuario[i]= float(input(f"Qunato Voce possui de {nome[i]} ? "))
 
-        if quantidade_usuario[i] <= 0:
-            print("Quantidade insuficiente!!")
-            exit()
+        for i in range(n):
+            if quantidade_usuario[i] <= 0:
+                print("Quantidade insuficiente!! Receita nao pode Ser feita")
+                exit()
 
         fator_limitante = min(quantidade_usuario[i] / quantidade_receita[i] for i in range(n))
 
@@ -52,9 +57,12 @@ while True:
             quantidade_usuario[i] = quantidade_receita[i] / D
         break
 
+    elif opcao == 4:
+        print("Obrigado")
+        exit()
     else:
-        print("Opçao invalida")
-        break
+        print("Opçao invalida! Tente novamente ...")
+
 
 
 print("\nAqui Estao os ingredientes e suas quantidades Nescessarias para a receita")
